@@ -8,7 +8,7 @@
 5. [Results](#results)
 6. [Licensing, Authors and Acknowledgements](#licensing)
 
-## Installtion<a name="Installation"></a>
+## Installation<a name="Installation"></a>
 
 The project is a Python 3.6+ project and its library dependencies will 
 need to be installed before it can be run.
@@ -21,10 +21,10 @@ environement:
 
 ```
 > cd /path/to/sentimentclf
-> pip install -r requirements.txt**
+> pip install -r requirements.txt
 ```
 
-# Project Motivation<a name="motivation"></a>
+## Project Motivation<a name="motivation"></a>
 
 The objective of this project was to build a classification model that 
 predicts the sentiment of a given film review. More precisely, the 
@@ -45,7 +45,7 @@ Movie Database (IMDb). It was constructed by Andrew L. Maas *et al.* who
 then released it to the public [2]. The dataset is available via Keras' 
 built-in small datasets [3].
 
-# File Description<a name="files"></a>
+## File Description<a name="files"></a>
 
 The project can be broken down into 3 main directories:
 
@@ -64,9 +64,10 @@ database. It also contains two subdirectories: **static** is where the
 images that were added to the web application while **templates** is 
 where the application's templates are stored.
 
-**Important Note**: ADD SOMETHING HERE!!
+**Important Note**: due to the size of some of the directories being more 
+than 100MB, they were stored using the Git Large File Storage extension.
 
-# Instructions
+## Instructions
 
 The Project Definition, Analysis, Methodology, Results, and Conclusion 
 can all be found in the Jupyter notebook `sentimentclf.ipynb` located in 
@@ -83,7 +84,7 @@ or
 > flask --app mywebapp/app run
 ```
 
-# Results<a name="results"></a>
+## Results<a name="results"></a>
 
 The final solution is a dense neural network which showed great 
 performance at predicting the sentiment of a given film review: it has 
@@ -100,7 +101,7 @@ the architecture of the model for one that is more specialised in
 identifying patterns of tokens - for example, Recurrent Neural Networks 
 (RNNs). 
 
-# Licensing, Authors, and Acknowledgements<a name="licensing"></a>
+## Licensing, Authors, and Acknowledgements<a name="licensing"></a>
 
 This project would not have been possible without the helpful 
 information found in the following resources:
