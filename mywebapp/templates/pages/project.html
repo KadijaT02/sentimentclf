@@ -1,0 +1,92 @@
+<!-- connect this child template to its parent template -->
+{% extends 'base.html' %}
+
+<!-- set activate_page variable -->
+{% set active_page = "project" %}
+
+{% block header %}
+    <div class="container my-4">
+        <h2>Project Definition</h2>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    <div class="container">
+        <div class="row pb-2">
+            <!-- add content -->
+            <h4>
+                Overview
+            </h4>
+            <p>
+                This project consisted of building a <strong>classification model that predicts the sentiment of a given film review</strong>.
+                More precisely, the model would be able to predict if a given review is a positive one or a negative one.
+                This project therefore combines concepts from Natural Language Processing (NLP) and Deep Learning.
+            </p>
+            <p>
+                The project idea took inspiration from the book <span class="lead fs-6">Deep Learning Illustrated, <em>A visual, Interactive Guide to Artificial Intelligence</em> (2020)</span> by Jon Krohn with Grant Beyleveld and Aglaé Bassens [1].
+                In this book, the authors tie together concepts that were introduced in <span class="lead fs-6">Chapter 11 - Natural Language Processing</span> by experimenting with a sentiment classifier.
+                Some of these concepts were new to me so this project idea felt like the perfect introduction to them.
+            </p>
+        </div>
+        <div class="row">
+            <!-- add content -->
+            <h4>
+                About the data
+            </h4>
+            <p>
+                The dataset used is a collection of reviews from the <strong>Internet Movie Database (IMDb)</strong>.
+                It was constructed by Andrew L. Maas <em>et al.</em> who then released it to the public [2].
+                The dataset is available via Keras' built-in small datasets [3].
+            </p>
+            <p>
+                The dataset was specifically created for binary sentiment classification.
+                It consists of 50,000 highly polarised reviews with various amounts of tokens (see <span class="fw-light">Figure 1</span>), and no more than 30 reviews per movie was allowed.
+                The constructed dataset is also evenly divided into training and test sets as shown in <span class="fw-light">Figure 2</span>.
+            </p>
+            <p>
+                On IMDb, users provide a star rating out of 10.
+                A review is labelled as negative (<em>y=0</em>) if its star rating is four stars or fewer.
+                A review is labelled as positive (<em>y=1</em>) if its star rating is seven stars or more.
+            </p>
+            <p>
+                When it comes to the reviews themselves, they are encoded as lists of integers (<em>word indices</em>).
+                More precisely, words are ranked based on how often they occur in the training set.
+                Each word was therefore encoded by its frequency rank.
+            </p>
+        </div>
+        <div class="row justify-content-center pb-2">
+            <!-- add plotly plots -->
+            <div class="col-8" id="fig1" align="center">
+                <figure>
+                    <figcaption class="figure-caption text-center">Figure 1</figcaption>
+                </figure>
+            </div>
+            <div class="col-4" id="fig2" align="center">
+                <figure>
+                    <figcaption class="figure-caption text-center">Figure 2</figcaption>
+                </figure>
+            </div>
+        </div>
+        <div class="row">
+            <!-- add content -->
+            <h4>Acknowledgement</h4>
+            <p>This project would not have been possible without the helpful information found in the following resources:</p>
+            <div class="fw-light">
+                <ul>
+                    <li>[1] Jon Krohn with Grant Beyleveld and Aglaé Bssens. (2020). Deep Learning Illustrated, <em>A Visual, Interactive Guide to Artificial Intelligence</em>.</li>
+                    <li>[2] Andrew L. Maas, Raymond E. Daly, Peter T. Pham, Dan Huang, Andrew Y. Ng, and Christopher Potts. (2011). Learning Word Vectors for Sentiment Analysis, <em>The 49th Annual Meeting of the Association for Computational Linguistics (ACL 2011)</em>.</li>
+                    <li>[3] <em>IMDB movie review sentiment classification dataset</em>, Kera's built-in small datasets. Available at: <a href="https://keras.io/api/datasets/imdb/">https://keras.io/api/datasets/imdb/</a> (Accessed:20 September 2024).</li>
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- JavaScript tp add the plotly plots -->
+    <script type="text/javascript">
+        const fig1 = {{ fig1JSON | safe }};
+        const fig2 = {{ fig2JSON | safe }};
+        Plotly.plot("fig1", fig1.data, fig1.layout);
+        Plotly.plot("fig2", fig2.data, fig2.layout);
+    </script>
+{% endblock content %}

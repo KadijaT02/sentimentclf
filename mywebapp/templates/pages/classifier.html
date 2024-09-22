@@ -1,0 +1,91 @@
+<!-- connects this child template to its parent template -->
+{% extends 'base.html' %}
+
+<!-- set active_page variable -->
+{% set active_page = "classifier" %}
+
+{% block header %}
+    <div class="container my-4">
+        <h2>Binary Sentiment Classifier</h2>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    <!-- add content -->
+    <div class="container">
+        <!-- the unique row -->
+        <div class="row">
+            <!-- add two columns -->
+            <div class="col">
+                <!-- nest two rows in this column -->
+                <div class="row pb-2">
+                    <h4>Architecture</h4>
+                    <p>
+                        The architecture of the sentiment classifier can be broken down as follows:
+                    </p>
+                    <div>
+                        <!-- add list in <div> so that bullet points show properly -->
+                        <ul>
+                            <li>We used Keras' <span class="lead fs-6">Sequential</span> class to stack layers into a Model.</li>
+                            <li>The first layer is the <span class="lead fs-6">Embedding</span> layer which creates word vectors from our training set of film reviews.</li>
+                            <li>The second layer is a <span class="lead fs-6">Flatten</span> layer which flattens the output of the previous layer.</li>
+                            <li>The third layer is a <span class="lead fs-6">Dense</span> layer with ReLu activation: <em>max(x, 0)</em>, the element-wise maximum of 0 and an input tensor x.</li>
+                            <li>The last layer is a single-neuron <span class="lead fs-6">Dense</span> layer with sigmoid activation. This layer outputs probabilities between 0 and 1.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- add content -->
+                    <h4>Performance</h4>
+                    <p>
+                        The sentiment classifier demonstrated reasonably good performance on unseen data.
+                        Indeed, it showed an <strong>accuracy of 0.8690</strong> and a <strong>ROC AUC score of 94.35%</strong> when evaluated on the test set (25,000 reviews).
+                        Moreover, the classifier tends to be confident on the sentiment of a given review - as illustrated in <span class="fw-light">Figure 1</span>.
+                    </p>
+                    <div id="fig1" align="center">
+                        <figure>
+                            <figcaption class="figure-caption text-center">Figure 1</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <!-- add content here -->
+                    <h1 class="display-6">Give the classifier a try!</h1>
+                    <p>
+                        It's simple - just enter a number between 1 and 25,000 and hit the Submit button.
+                        A film review from the test set will be displayed along with the classifier's prediction of its sentiment.
+                    </p>
+                    <!-- add form with GET method -->
+                    <form class="row" method="POST">
+                        <div class="col-9">
+                            <input type="number" name="N" min=1 max=25000 class="form-control" placeholder="Please enter a number between 1 and 25,000 (included).">
+                        </div>
+                        <div class="col-3">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- display encoded film review and prediction of its sentiment -->
+                {% if prediction %}
+                    <div class="row border rounded border-warning mt-3 p-3">
+                        <p class="lead text-center">
+                            The classifier estimates with a probability of <strong>{{ prediction }}</strong> that the following review is positive
+                        </p>
+                        {% if decoded_review %}
+                            <p class="fw-light">
+                                "{{ decoded_review }}"
+                            </p>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <!-- JavaScript to add the plotly plot -->
+        <script type="text/Javascript">
+            const fig1 = {{ fig1JSON | safe }};
+            Plotly.plot("fig1", fig1.data, fig1.layout);
+        </script>
+    </div>
+{% endblock content %}

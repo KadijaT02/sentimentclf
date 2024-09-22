@@ -1,0 +1,53 @@
+<!-- connect this child template to its parent template -->
+{% extends 'base.html' %}
+
+<!-- set activate_page variable -->
+<!--{% set active_page = "home" %}-->
+
+{% block header %}
+    <div class="container-fluid my-5 pt-5 text-center">
+        <div class="row">
+            <div class="col">
+                <h1 class="display-1 fw-bold font-monospace">Hello, and welcome</h1>
+            </div>
+        </div>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    <!-- add buttons -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="container-fluid text-center">
+                <a role="button" class="border-dark-subtle btn btn-light mx-2 rounded-pill shadow w-25" href="{{ url_for('pages.project') }}">
+                    Learn more about the project
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                    </svg>
+                </a>
+                <a role="button" class="border-dark-subtle btn btn-light mx-2 rounded-pill shadow w-25" href="{{ url_for('pages.classifier') }}">
+                    Try out the classifier
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <!-- add button to trigger modal -->
+        <button type="button" class="m-2 border-dark-subtle btn btn-light rounded-5 shadow position-absolute end-0 bottom-0" data-bs-toggle="modal" data-bs-target="#mymodal">?</button>
+        <!-- add modal -->
+        <div class="modal fade" id="mymodal" tabindex="-1" aria-labelledby="mymodalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="mymodalLabel">About</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        This web application was created with <a href="https://flask.palletsprojects.com/en/3.0.x/">Flask</a> as the web framework and <a href="https://getbootstrap.com/">Boostrap</a> as the frontend toolkit.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

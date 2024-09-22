@@ -1,0 +1,18 @@
+<!-- create navigation menu -->
+<nav class="navbar navbar-expand-lg bg-dark shadow" data-bs-theme="dark">
+    <!-- Navbar content -->
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('pages.home') }}">Capstone Project</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <div class="navbar-nav">
+                <!-- add 'activate' to the class based on the active_page variable -->
+<!--                <a class="nav-link {% if active_page == 'home' %} active {% endif %}" aria-current="page" href="{{url_for('pages.home')}}">Home</a>-->
+                <a class="nav-link {% if active_page == 'project' %} active {% endif %}" href="{{url_for('pages.project')}}">Project Definition</a>
+                <a class="nav-link {% if active_page == 'classifier' %} active {% endif %}" href="{{url_for('pages.classifier')}}">Binary Sentiment Classifier</a>
+            </div>
+        </div>
+    </div>
+</nav>
